@@ -25,6 +25,17 @@ public static class ErrorModule
             return Error<A>(e);
         }
     }
+
+    public static Either<Exception, A> Handle<A>
+      ( Func<Exception, Either<Exception, A>> r
+      , Either<Exception, A> ea
+      )
+    =>
+        ea.Match(r, Result);
+
+    public static A ResultOrThrow<A>(Either<Exception, A> ea)
+    =>
+        ea.Match(e => {throw e;}, a => a);
 }
 
 }

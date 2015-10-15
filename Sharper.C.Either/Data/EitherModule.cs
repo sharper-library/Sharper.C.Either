@@ -5,28 +5,45 @@ namespace Sharper.C.Data
 
 public static class EitherModule
 {
-    public struct Either<A, B>
+    public sealed class Either<A, B>
     {
+        public bool IsLeft { get; }
+        public bool IsRight => !IsLeft;
+
+        private readonly A leftValue;
+        private readonly B rightValue;
+
+        internal Either(bool isLeft, A left, B right)
+        {
+            IsLeft = isLeft;
+            leftValue = left;
+            rightValue = right;
+        }
+
         public Either<A, C> FlatMap<C>(Func<B, Either<A, C>> f)
         =>
-            default(Either<A, C>);
+            IsLeft
+            ? new Either<A, C>(true, leftValue, default(C))
+            : f(rightValue);
 
         public Either<A, C> Map<C>(Func<B, C> f)
         =>
-            default(Either<A, C>);
+            IsLeft
+            ? new Either<A, C>(true, leftValue, default(C))
+            : new Either<A, C>(false, default(A), f(rightValue));
 
         public C Match<C>(Func<A, C> left, Func<B, C> right)
         =>
-            default(C);
+            IsLeft ? left(leftValue) : right(rightValue);
     }
 
     public static Either<A, B> Left<A, B>(A a)
     =>
-        default(Either<A, B>);
+        new Either<A, B>(true, a, default(B));
 
     public static Either<A, B> Right<A, B>(B b)
     =>
-        default(Either<A, B>);
+        new Either<A, B>(false, default(A), b);
 
     public struct LeftModule<A>
     {

@@ -1,0 +1,15 @@
+﻿{ "version": "0.1.0-*"
+, "description": "An Either type."
+, "authors": [ "Jeremy Hughes" ]
+, "tags": [ "" ]
+, "projectUrl": "https://github.com/sharper-library/Sharper.C.Either"
+, "licenseUrl": "https://raw.githubusercontent.com/sharper-library/Sharper.C.Either/master/LICENSE.txt"
+
+, "frameworks":
+  { "dotnet":
+    { "dependencies":
+      { "System.Runtime": "4.0.20"
+      }
+    }
+  }
+}

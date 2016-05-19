@@ -1,19 +1,21 @@
-﻿{ "version": "0.1.0-*"
-, "description": "Sharper.C.Either.Tests"
-, "authors": [ "Jeremy Hughes" ]
-, "tags": [ "" ]
-, "projectUrl": "https://github.com/sharper-library/Sharper.C.Either"
-, "licenseUrl": "https://raw.githubusercontent.com/sharper-library/Sharper.C.Either/master/LICENSE.txt"
-
-, "commands":
-  { "test": "run"
-  }
-
-, "dependencies":
-  { "Sharper.C.Sum.Testing": ""
-  }
-
-, "frameworks":
-  { "dnx451": { }
-  }
+{
+    "version": "0.1.0-*",
+    "description": "Sharper.C.Either.Tests",
+    "authors": [
+        "Jeremy Hughes"
+    ],
+    "tags": [
+        ""
+    ],
+    "projectUrl": "https://github.com/sharper-library/Sharper.C.Either",
+    "licenseUrl": "https://raw.githubusercontent.com/sharper-library/Sharper.C.Either/master/LICENSE.txt",
+    "commands": {
+        "test": "run"
+    },
+    "dependencies": {
+        "Sharper.C.Sum.Testing": ""
+    },
+    "frameworks": {
+        "dnx451": {}
+    }
 }

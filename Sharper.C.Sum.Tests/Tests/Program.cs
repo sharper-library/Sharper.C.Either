@@ -1,4 +1,4 @@
-namespace Sharper.C.Tests
+namespace Sharper.C.Tests.Data
 {
 
 using static SumTestsModule;

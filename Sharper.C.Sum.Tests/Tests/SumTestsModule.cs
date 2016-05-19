@@ -1,12 +1,11 @@
 ﻿using FsCheck;
+using Sharper.C.Data;
+using Sharper.C.Testing.Laws;
+using static Sharper.C.Testing.Arbitraries.SystemArbitrariesModule;
+using static Sharper.C.Testing.Arbitraries.SumArbitrariesModule;
 
-namespace Sharper.C.Tests
+namespace Sharper.C.Tests.Data
 {
-
-using Testing.Laws;
-using static Data.SumModule;
-using static Testing.Arbitraries.SystemArbitrariesModule;
-using static Testing.SumTestingModule;
 
 public static class SumTestsModule
 {

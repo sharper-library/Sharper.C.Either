@@ -1,11 +1,10 @@
 using FsCheck;
+using Sharper.C.Data;
 
-namespace Sharper.C.Testing
+namespace Sharper.C.Testing.Arbitraries
 {
 
-using static Data.SumModule;
-
-public static class SumTestingModule
+public static class SumArbitrariesModule
 {
     public static Arbitrary<Or<A, B>> AnySum<A, B>
       ( Arbitrary<A> arbA
@@ -15,8 +14,8 @@ public static class SumTestingModule
         Arb.From
           ( Gen.OneOf
               ( new[]
-                { arbA.Generator.Select(Left<A, B>)
-                , arbB.Generator.Select(Right<A, B>)
+                { arbA.Generator.Select(Or.Left<A, B>)
+                , arbB.Generator.Select(Or.Right<A, B>)
                 }
               )
           );

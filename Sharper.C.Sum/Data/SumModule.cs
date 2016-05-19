@@ -5,8 +5,6 @@ using System.Linq;
 namespace Sharper.C.Data
 {
 
-public static class SumModule
-{
     public sealed class Or<A, B>
     {
         public bool IsLeft { get; }
@@ -53,12 +51,12 @@ public static class SumModule
 
         public Or<A, C> LeftOr<C>(Func<Or<A, C>> x)
         =>  IsLeft
-            ? Left<A, C>(leftValue)
+            ? Or.Left<A, C>(leftValue)
             : x();
 
         public Or<C, B> RightOr<C>(Func<Or<C, B>> x)
         =>  IsRight
-            ? Right<C, B>(rightValue)
+            ? Or.Right<C, B>(rightValue)
             : x();
 
         public A LeftValueOr(Func<B, A> x)
@@ -69,8 +67,8 @@ public static class SumModule
 
         public Or<A, D> Zip<C, D>(Or<A, C> x, Func<B, C, D> f)
         =>  IsRight && IsRight
-            ? Right<A, D>(f(rightValue, x.rightValue))
-            : Left<A, D>(LeftOr(() => x).leftValue);
+            ? Or.Right<A, D>(f(rightValue, x.rightValue))
+            : Or.Left<A, D>(LeftOr(() => x).leftValue);
 
         public Or<D, B> LeftZip<C, D>(Or<C, B> x, Func<A, C, D> f)
         =>  Swap.Zip(x.Swap, f).Swap;
@@ -103,34 +101,35 @@ public static class SumModule
             ||  IsRight && x.IsRight && bEq(rightValue, x.rightValue);
     }
 
-    public static Or<A, B> Left<A, B>(A a)
-    =>  new Or<A, B>(true, a, default(B));
-
-    public static Or<A, B> Right<A, B>(B b)
-    =>  new Or<A, B>(false, default(A), b);
-
-    public static IEnumerable<Or<A, B>> Sequence<A, B>
-    ( this Or<A, IEnumerable<B>> e
-    )
-    =>  Traverse(e, a => a);
-
-    public static IEnumerable<Or<A, C>> Traverse<A, B, C>
-    ( this Or<A, B> e
-    , Func<B, IEnumerable<C>> f
-    )
-    =>  e.Cata
-        ( a => new[] {Left<A, C>(a)}
-        , b => f(b).Select(Right<A, C>)
-        );
-
-    public struct FixLeft<A>
+    public static class Or
     {
-        public Or<A, B> Left<B>(A a)
-        =>  Left<A, B>(a);
+        public static Or<A, B> Left<A, B>(A a)
+        =>  new Or<A, B>(true, a, default(B));
 
-        public Or<A, B> Right<B>(B b)
-        =>  Right<A, B>(b);
+        public static Or<A, B> Right<A, B>(B b)
+        =>  new Or<A, B>(false, default(A), b);
+
+        public static IEnumerable<Or<A, B>> Sequence<A, B>
+        ( this Or<A, IEnumerable<B>> e
+        )
+        =>  Traverse(e, a => a);
+
+        public static IEnumerable<Or<A, C>> Traverse<A, B, C>
+        ( this Or<A, B> e
+        , Func<B, IEnumerable<C>> f
+        )
+        =>  e.Cata
+            ( a => new[] {Left<A, C>(a)}
+            , b => f(b).Select(Right<A, C>)
+            );
+
+        public struct FixLeft<A>
+        {
+            public Or<A, B> Left<B>(A a)
+            =>  Left<A, B>(a);
+
+            public Or<A, B> Right<B>(B b)
+            =>  Right<A, B>(b);
+        }
     }
-}
-
 }

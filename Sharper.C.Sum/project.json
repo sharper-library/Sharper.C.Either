@@ -1,33 +1,29 @@
-{
-    "version": "0.1.0-*",
-    "description": "An Either type.",
-    "authors": [
-        "Jeremy Hughes"
-    ],
-    "tags": [
-        ""
-    ],
-    "projectUrl": "https://github.com/sharper-library/Sharper.C.Sum",
-    "licenseUrl": "https://raw.githubusercontent.com/sharper-library/Sharper.C.Sum/master/LICENSE.txt",
-    "dependencies": {
-        "System.Collections.Immutable": "1.2.0-rc2-24027"
-    },
-    "frameworks": {
-        "dotnet": {
-            "dependencies": {
-                "System.Runtime": "4.0.20",
-                "System.Linq": "4.0.0"
-            }
-        },
-        "dnx451": {
-            "frameworkAssemblies": {
-                "System.Runtime": "4.0.10.0"
-            }
-        },
-        "net451": {
-            "frameworkAssemblies": {
-                "System.Runtime": "4.0.10.0"
-            }
-        }
+{ "version": "0.1.0-*"
+, "description": "An Either type."
+, "authors": [ "Jeremy Hughes" ]
+, "tags": [ "" ]
+, "projectUrl": "https://github.com/sharper-library/Sharper.C.Sum"
+, "licenseUrl": "https://raw.githubusercontent.com/sharper-library/Sharper.C.Sum/master/LICENSE.txt"
+, "dependencies":
+  { "System.Collections.Immutable": "1.2.0-rc2-24027"
+  , "Sharper.C.Maybe": "0.1.0-master-*"
+  }
+, "frameworks":
+  { "dotnet":
+    { "dependencies":
+      { "System.Runtime": "4.0.20"
+      , "System.Linq": "4.0.0"
+      }
     }
+  , "dnx451":
+    { "frameworkAssemblies":
+      { "System.Runtime": "4.0.10.0"
+      }
+    }
+  , "net451":
+    { "frameworkAssemblies":
+      { "System.Runtime": "4.0.10.0"
+      }
+    }
+  }
 }

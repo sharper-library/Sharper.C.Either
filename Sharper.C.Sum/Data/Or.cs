@@ -23,6 +23,8 @@ namespace Sharper.C.Data
         public C Cata<C>(Func<A, C> left, Func<B, C> right)
         =>  IsLeft ? left(leftValue) : right(rightValue);
 
+        // ---
+
         public Or<A, C> FlatMap<C>(Func<B, Or<A, C>> f)
         =>  IsLeft
             ? new Or<A, C>(true, leftValue, default(C))
@@ -83,6 +85,16 @@ namespace Sharper.C.Data
             ? new[] {leftValue}
             : Enumerable.Empty<A>();
 
+        public Maybe<B> ToMaybe
+        =>  IsLeft
+            ? Maybe.Nothing<B>()
+            : Maybe.Just(rightValue);
+
+        public Maybe<A> LeftMaybe
+        =>  IsLeft
+            ? Maybe.Just(leftValue)
+            : Maybe.Nothing<A>();
+
         public Or<A, C> Select<C>(Func<B, C> f)
         =>  Map(f);
 
@@ -108,6 +120,12 @@ namespace Sharper.C.Data
 
         public static Or<A, B> Right<A, B>(B b)
         =>  new Or<A, B>(false, default(A), b);
+
+        public static Or<A, B> FromMaybe<A, B>(Func<A> a, Maybe<B> b)
+        =>  b.Cata(() => Left<A, B>(a()), Right<A, B>);
+
+        public static Or<A, B> LeftFromMaybe<A, B>(Maybe<A> a, Func<B> b)
+        =>  FromMaybe(b, a).Swap;
 
         public static IEnumerable<Or<A, B>> Sequence<A, B>
         ( this Or<A, IEnumerable<B>> e

@@ -121,11 +121,11 @@ namespace Sharper.C.Data
         public static Or<A, B> Right<A, B>(B b)
         =>  new Or<A, B>(false, default(A), b);
 
-        public static Or<A, B> FromMaybe<A, B>(Func<A> a, Maybe<B> b)
+        public static Or<A, B> ToOr<A, B>(this Maybe<B> b, Func<A> a)
         =>  b.Cata(() => Left<A, B>(a()), Right<A, B>);
 
-        public static Or<A, B> LeftFromMaybe<A, B>(Maybe<A> a, Func<B> b)
-        =>  FromMaybe(b, a).Swap;
+        public static Or<A, B> ToLeftOr<A, B>(this Maybe<A> a, Func<B> b)
+        =>  a.ToOr(b).Swap;
 
         public static IEnumerable<Or<A, B>> Sequence<A, B>
         ( this Or<A, IEnumerable<B>> e

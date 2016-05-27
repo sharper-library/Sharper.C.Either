@@ -1,5 +1,5 @@
 {
-    "version": "1.0-*",
+    "version": "1.0",
     "description": "Properties and Arbitrary instances for Sharper.C.Either",
     "authors": [
         "Jeremy Hughes"
@@ -9,7 +9,7 @@
         "licenseUrl": "https://raw.githubusercontent.com/sharper-library/Sharper.C.Sum/master/LICENSE.txt"
     },
     "dependencies": {
-        "Sharper.C.Sum": "1.0-*",
+        "Sharper.C.Sum": "1.0",
         "Sharper.C.Testing.Xunit": "1.3"
     },
     "frameworks": {

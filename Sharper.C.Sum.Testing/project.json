@@ -1,16 +1,18 @@
 {
-    "version": "0.1.0-*",
+    "version": "1.0-*",
     "description": "Properties and Arbitrary instances for Sharper.C.Either",
     "authors": [
         "Jeremy Hughes"
     ],
-    "projectUrl": "https://github.com/sharper-library/Sharper.C.Either",
-    "licenseUrl": "https://raw.githubusercontent.com/sharper-library/Sharper.C.Either/master/LICENSE.txt",
+    "packOptions": {
+        "projectUrl": "https://github.com/sharper-library/Sharper.C.Sum",
+        "licenseUrl": "https://raw.githubusercontent.com/sharper-library/Sharper.C.Sum/master/LICENSE.txt"
+    },
     "dependencies": {
-        "Sharper.C.Sum": "",
-        "Sharper.C.Testing": "0.1.0-*"
+        "Sharper.C.Sum": "1.0-*",
+        "Sharper.C.Testing.Xunit": "1.3"
     },
     "frameworks": {
-        "dnx451": {}
+        "net461": {}
     }
 }

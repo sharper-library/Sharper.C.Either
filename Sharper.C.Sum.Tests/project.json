@@ -1,21 +1,19 @@
 {
-    "version": "0.1.0-*",
+    "version": "1.0-*",
     "description": "Sharper.C.Either.Tests",
     "authors": [
         "Jeremy Hughes"
     ],
-    "tags": [
-        ""
-    ],
-    "projectUrl": "https://github.com/sharper-library/Sharper.C.Either",
-    "licenseUrl": "https://raw.githubusercontent.com/sharper-library/Sharper.C.Either/master/LICENSE.txt",
-    "commands": {
-        "test": "run"
+    "packOptions": {
+        "projectUrl": "https://github.com/sharper-library/Sharper.C.Sum",
+        "licenseUrl": "https://raw.githubusercontent.com/sharper-library/Sharper.C.Sum/master/LICENSE.txt"
     },
+    "testRunner": "xunit",
     "dependencies": {
-        "Sharper.C.Sum.Testing": ""
+        "Sharper.C.Sum.Testing": "1.0-*",
+        "dotnet-test-xunit": "1.0.0-rc3-*"
     },
     "frameworks": {
-        "dnx451": {}
+        "net461": {}
     }
 }

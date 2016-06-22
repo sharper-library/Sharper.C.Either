@@ -141,13 +141,15 @@ namespace Sharper.C.Data
             , b => f(b).Select(Right<A, C>)
             );
 
-        public struct FixLeft<A>
-        {
-            public Or<A, B> Left<B>(A a)
-            =>  Left<A, B>(a);
-
-            public Or<A, B> Right<B>(B b)
-            =>  Right<A, B>(b);
+        public static Or<Exception, A> Recover<A>
+          ( this Func<A> run
+          )
+        {   try
+            {   return Right<Exception, A>(run());
+            }
+            catch (Exception e)
+            {   return Left<Exception, A>(e);
+            }
         }
     }
 }

@@ -11,7 +11,7 @@
     "testRunner": "xunit",
     "dependencies": {
         "Sharper.C.Sum.Testing": "1.1-*",
-        "dotnet-test-xunit": "1.0.0-rc3-*"
+        "dotnet-test-xunit": "1.0.0-*"
     },
     "frameworks": {
         "net461": {}

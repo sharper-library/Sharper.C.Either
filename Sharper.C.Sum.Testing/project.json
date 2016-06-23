@@ -10,7 +10,7 @@
     },
     "dependencies": {
         "Sharper.C.Sum": "1.1-*",
-        "Sharper.C.Testing.Xunit": "1.3"
+        "Sharper.C.Testing.Xunit": "1.*"
     },
     "frameworks": {
         "net461": {}

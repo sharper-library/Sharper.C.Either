@@ -61,6 +61,16 @@ namespace Sharper.C.Data
             ? Or.Right<C, B>(rightValue)
             : x();
 
+        public Or<A, C> LeftOr<C>(Func<B, Or<A, C>> x)
+        =>  IsLeft
+            ? Or.Left<A, C>(leftValue)
+            : x(rightValue);
+
+        public Or<C, B> RightOr<C>(Func<A, Or<C, B>> x)
+        =>  IsRight
+            ? Or.Right<C, B>(rightValue)
+            : x(leftValue);
+
         public A LeftValueOr(Func<B, A> x)
         =>  IsLeft ? leftValue : x(rightValue);
 

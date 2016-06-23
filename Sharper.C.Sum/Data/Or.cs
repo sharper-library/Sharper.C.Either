@@ -127,6 +127,12 @@ namespace Sharper.C.Data
         public static Or<A, B> ToLeftOr<A, B>(this Maybe<A> a, Func<B> b)
         =>  a.ToOr(b).Swap;
 
+        public static Or<A, B> Join<A, B>(this Or<A, Or<A, B>> or)
+        =>  or.RightValueOr(Left<A, B>);
+
+        public static Or<A, B> JoinLeft<A, B>(this Or<Or<A, B>, B> or)
+        =>  or.LeftValueOr(Right<A, B>);
+
         public static IEnumerable<Or<A, B>> Sequence<A, B>
         ( this Or<A, IEnumerable<B>> e
         )
@@ -140,6 +146,17 @@ namespace Sharper.C.Data
             ( a => new[] {Left<A, C>(a)}
             , b => f(b).Select(Right<A, C>)
             );
+
+        public static IEnumerable<Or<A, B>> SequenceLeft<A, B>
+        ( this Or<IEnumerable<A>, B> e
+        )
+        =>  e.Swap.Sequence().Select(x => x.Swap);
+
+        public static IEnumerable<Or<C, B>> TraverseLeft<A, B, C>
+        ( this Or<A, B> e
+        , Func<A, IEnumerable<C>> f
+        )
+        =>  e.Swap.Traverse(f).Select(x => x.Swap);
 
         public static Or<Exception, A> Recover<A>
           ( this Func<A> run
